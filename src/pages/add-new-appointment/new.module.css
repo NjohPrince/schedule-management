@@ -54,3 +54,10 @@
     bottom: 2rem;
     right: 4vw;
 }
+
+@media screen and (max-width: 525px) {
+    .getters.controllable {
+        flex-direction: column;
+        -ms-flex-direction: column;
+    }
+}

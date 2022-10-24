@@ -77,9 +77,9 @@ const NewAppointment: React.FC = () => {
                     </div>
                     <div className={styles.form__control}>
                         <h3>First Time</h3>
-                        <Select defaultValue="YES" size="large">
-                            <Option value="YES">YES</Option>
-                            <Option value="NO">NO</Option>
+                        <Select defaultValue="Yes" size="large">
+                            <Option value="Yes">Yes</Option>
+                            <Option value="No">No</Option>
                         </Select>
                     </div>
                     <div className={styles.form__control}>
@@ -119,14 +119,14 @@ const NewAppointment: React.FC = () => {
                     <h2>Notes </h2>
                 </div>
 
-                <div className={styles.getters}>
-                    <div className={styles.form__control}>
+                <div className={`${styles.getters} ${styles.controllable}`}>
+                    <div style={{ flex: 1 }} className={styles.form__control}>
                         <h3>Before Appointment</h3>
-                        <TextArea style={{ resize: 'none' }} rows={4} placeholder="Before Appointment" />
+                        <TextArea style={{ resize: 'none', width: '100%' }} rows={4} placeholder="Before Appointment" />
                     </div>
-                    <div className={styles.form__control}>
+                    <div style={{ flex: 1 }} className={styles.form__control}>
                         <h3>After Appointment</h3>
-                        <TextArea style={{ resize: 'none' }} rows={4} placeholder="After Appointment" />
+                        <TextArea style={{ resize: 'none', width: '100%' }} rows={4} placeholder="After Appointment" />
                     </div>
                 </div>
             </form>
