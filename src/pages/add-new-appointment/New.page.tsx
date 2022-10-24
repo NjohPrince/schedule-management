@@ -48,9 +48,9 @@ const NewAppointment: React.FC = () => {
                     </div>
                     <div className={styles.form__control}>
                         <h3>Sex</h3>
-                        <Select defaultValue="MALE" size="large">
-                            <Option value="MALE">MALE</Option>
-                            <Option value="FEMALE">FEMALE</Option>
+                        <Select defaultValue="Male" size="large">
+                            <Option value="Male">Male</Option>
+                            <Option value="Female">Female</Option>
                         </Select>
                     </div>
                     <div className={styles.form__control}>
@@ -88,10 +88,10 @@ const NewAppointment: React.FC = () => {
                     </div>
                     <div className={styles.form__control}>
                         <h3>Appointment Status</h3>
-                        <Select defaultValue="PENDING" size="large">
-                            <Option value="PENDING">PENDING</Option>
-                            <Option value="COMPLETED">COMPLETED</Option>
-                            <Option value="RESCHEDULED">RESCHEDULED</Option>
+                        <Select defaultValue="Pending" size="large">
+                            <Option value="Pending">Pending</Option>
+                            <Option value="Completed">Completed</Option>
+                            <Option value="Rescheduled">Rescheduled</Option>
                         </Select>
                     </div>
                     <div className={styles.form__control}>
