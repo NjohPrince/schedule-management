@@ -5,7 +5,6 @@ import moment, { Moment } from 'moment';
 import { Button, Input, Select, DatePicker, TimePicker } from 'antd';
 import { useDispatch, useSelector } from '../../hooks';
 import { createAppointmentFunc } from '../../features/appointment/thunk/appointmentThunkAPI';
-import { resetState } from '../../features/appointment/slice/appointmentSlice';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -18,6 +17,7 @@ import NavbarComponent from '../../components/navbar/Navbar.component';
 import { CONSTANTS } from '../../constants/Constants';
 import { AppointmentEntityType } from '../../types/models';
 import { RootState } from '../../app/store';
+import LoadingOverlayComponent from '../../components/loading-overlay/LoadingOverlay.component';
 
 const NewAppointment: React.FC = () => {
     const [formData, setFormData] = useState<AppointmentEntityType>({
@@ -69,6 +69,8 @@ const NewAppointment: React.FC = () => {
     return (
         <div className={styles.add__new}>
             <NavbarComponent />
+
+            {isLoading && <LoadingOverlayComponent />}
 
             <section className={styles.section}>
                 <div className={styles.head}>

@@ -16,7 +16,6 @@ export const handleErrorMessages = (error: any) => {
         };
     }
     if (axios.isAxiosError(error)) {
-        console.log('IS AXIOS ERROR');
         if (error.response && error.response.data) {
             message = error.response.data;
         }
@@ -48,7 +47,6 @@ export const createAppointmentFunc = createAsyncThunk(
 
             // eslint-disable-next-line
         } catch (error: any) {
-            console.log('REQUEST_ERROR: ', error);
             return thunkAPI.rejectWithValue(handleErrorMessages(error));
         }
     },
