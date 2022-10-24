@@ -1,3 +1,3 @@
-export interface AppointmentCommentType {
-    comment: string;
+export interface ErrorMessage {
+    error: string;
 }

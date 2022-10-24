@@ -1,19 +1,25 @@
 export interface BaseUserEntityType {
-    firstName: string;
-    lastName: string;
-    email: string;
-    contact: string;
-}
-
-export interface PatientEntityType extends BaseUserEntityType {
-    address: string;
-    age: string;
-    sex: string;
-    comment: string;
-    appointmentCode: string;
+    uniqueCode: string;
     // A[SN][DD][MM][YY] code format
     // SN ~ Serial number
     // DD ~ 01-31 - Day of the appointment
     // MM ~ 01-12 - Month of the appointment
     // YY ~  - Year of the appointment
+
+    clientName: string;
+    phone: string;
+    email: string;
+    contact: string;
+    address1: string;
+    city: string;
+    firstTime: string;
+}
+
+export interface AppointmentEntityType extends BaseUserEntityType {
+    appointmentDate: string;
+    requestDate: string;
+    appointmentStatus: string;
+    appointmentTime: string;
+    noteAfterAppointment: string;
+    noteBeforeAppointment: string;
 }
