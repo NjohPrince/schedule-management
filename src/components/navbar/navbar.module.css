@@ -1,0 +1,42 @@
+.navbar {
+    background: rgba(0, 0, 0, 0.7);
+    padding-right: 4vw;
+}
+
+.navbar .text {
+    background: rgb(0, 136, 255);
+    border-bottom-right-radius: 50px;
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 4vw;
+    width: 500px;
+}
+
+.navbar .text span {
+    font-size: 1.8rem;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+}
+
+.navbar .text span:nth-child(1) {
+    padding-right: 2rem;
+}
+
+.navbar .text span:nth-child(1)::before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+
+@media screen and (max-width: 550px) {
+    .navbar .text {
+        width: 100%;
+    }
+}
