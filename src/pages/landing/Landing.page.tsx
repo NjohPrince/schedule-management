@@ -27,16 +27,16 @@ const LandingPage: React.FC = () => {
 
     useEffect(() => {
         dispatch(getAllAppointmentsFunc());
-
-        return () => {
-            resetState();
-        };
     }, [location]);
 
     useEffect(() => {
         if (isError) {
             alert(message);
         }
+
+        return () => {
+            resetState();
+        };
     }, [isError, isLoading, isSuccess, message]);
 
     return (
