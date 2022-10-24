@@ -1,0 +1,17 @@
+.card {
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    padding: 1rem;
+    min-height: 100px;
+}
+
+.card h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.card h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
