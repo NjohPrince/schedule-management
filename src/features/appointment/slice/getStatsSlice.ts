@@ -39,7 +39,7 @@ const getStatsSlice = createSlice({
             })
             .addCase(getStatsFunc.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
-                state.isSuccess = false;
+                state.isSuccess = true;
                 state.statistics = payload.stats;
             })
             .addCase(getStatsFunc.rejected, (state, action) => {

@@ -8,6 +8,7 @@ import { CONSTANTS } from './constants/Constants';
 import NotFoundPage from './pages/error-pages/Notfound.page';
 import LandingPage from './pages/landing/Landing.page';
 import NewAppointment from './pages/add-new-appointment/New.page';
+import AppTestComponent from './components/antdTable/AntDTable';
 
 const App = () => {
     return (

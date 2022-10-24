@@ -40,7 +40,7 @@ const appointmentSlice = createSlice({
             })
             .addCase(createAppointmentFunc.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
-                state.isSuccess = false;
+                state.isSuccess = true;
                 state.message = payload.message;
             })
             .addCase(createAppointmentFunc.rejected, (state, action) => {
@@ -55,7 +55,7 @@ const appointmentSlice = createSlice({
             })
             .addCase(getAllAppointmentsFunc.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
-                state.isSuccess = false;
+                state.isSuccess = true;
                 state.appointments = payload.appointments;
             })
             .addCase(getAllAppointmentsFunc.rejected, (state, action) => {

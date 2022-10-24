@@ -1,0 +1,5 @@
+.table__layout {
+    width: 1500px;
+    overflow-x: auto;
+    padding: 2rem 4vw;
+}

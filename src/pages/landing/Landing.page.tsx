@@ -9,12 +9,14 @@ import styles from './landing.module.css';
 import NavbarComponent from '../../components/navbar/Navbar.component';
 import SearchComponent from '../../components/search/Search.component';
 import StatisticsComponent from '../../components/statistics/Statistics.component';
+import LoadingOverlayComponent from '../../components/loading-overlay/LoadingOverlay.component';
+import TableComponent from '../../components/antdTable/AntDTable';
 
+// extras
 import { CONSTANTS } from '../../constants/Constants';
 import { useDispatch, useSelector } from '../../hooks';
 import { RootState } from '../../app/store';
 import { getAllAppointmentsFunc } from '../../features/appointment/thunk/appointmentThunkAPI';
-import LoadingOverlayComponent from '../../components/loading-overlay/LoadingOverlay.component';
 
 const LandingPage: React.FC = () => {
     const appointmentState = useSelector((state: RootState) => state.appointmentSlice);
@@ -39,6 +41,8 @@ const LandingPage: React.FC = () => {
 
             {isLoading && <LoadingOverlayComponent />}
             <StatisticsComponent />
+
+            {appointments && appointments.length > 0 && <TableComponent data={appointments} />}
 
             <div className={styles.add}>
                 <Link to={CONSTANTS.PATHS.add_new_appointment}>
