@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppointmentEntityType } from '../../../types/models';
-import { createAppointmentFunc } from '../thunk/appointmentThunkAPI';
+import { createAppointmentFunc, getAllAppointmentsFunc } from '../thunk/appointmentThunkAPI';
 import { ErrorMessage } from '../../../types';
 
 export interface initialStateType {
@@ -44,6 +44,23 @@ const appointmentSlice = createSlice({
                 state.message = payload.message;
             })
             .addCase(createAppointmentFunc.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = (action.payload as ErrorMessage)?.error;
+            })
+            .addCase(getAllAppointmentsFunc.pending, (state) => {
+                state.isLoading = true;
+                state.isError = false;
+                state.isSuccess = false;
+            })
+            .addCase(getAllAppointmentsFunc.fulfilled, (state, { payload }) => {
+                state.isLoading = false;
+                state.isSuccess = false;
+
+                console.log('REQUEST_DATA: ', payload);
+                // state.message = payload.message;
+            })
+            .addCase(getAllAppointmentsFunc.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = (action.payload as ErrorMessage)?.error;

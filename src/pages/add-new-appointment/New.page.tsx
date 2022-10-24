@@ -14,6 +14,7 @@ import styles from './new.module.css';
 
 // components
 import NavbarComponent from '../../components/navbar/Navbar.component';
+
 import { CONSTANTS } from '../../constants/Constants';
 import { AppointmentEntityType } from '../../types/models';
 import { RootState } from '../../app/store';

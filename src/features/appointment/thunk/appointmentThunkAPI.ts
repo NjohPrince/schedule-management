@@ -7,29 +7,8 @@ import { CONSTANTS } from '../../../constants/Constants';
 // types
 import { AppointmentEntityType } from '../../../types/models';
 
-// eslint-disable-next-line
-export const handleErrorMessages = (error: any) => {
-    let message;
-    if (error.message && error.code === 'ERR_NETWORK') {
-        return {
-            error: error.message,
-        };
-    }
-    if (axios.isAxiosError(error)) {
-        if (error.response && error.response.data) {
-            message = error.response.data;
-        }
-        return message;
-    } else {
-        if (error.message) {
-            message = error;
-        } else {
-            message = error;
-        }
-    }
-
-    return message;
-};
+// error handling utility
+import { handleErrorMessages } from '../../errorHandling/ErrorHandling';
 
 const config = {
     headers: {
@@ -51,3 +30,14 @@ export const createAppointmentFunc = createAsyncThunk(
         }
     },
 );
+
+export const getAllAppointmentsFunc = createAsyncThunk('/get-appointments', async (_, thunkAPI) => {
+    try {
+        const response = await axios.get(`${CONSTANTS.ENV_VARIABLES.server_url}/appointments`, config);
+        return response?.data;
+
+        // eslint-disable-next-line
+    } catch (error: any) {
+        return thunkAPI.rejectWithValue(handleErrorMessages(error));
+    }
+});
