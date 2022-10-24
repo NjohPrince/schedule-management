@@ -1,0 +1,11 @@
+build
+react-app-env.d.ts
+setupTests.ts
+reportWebVitals.ts
+node_modules
+yarn.lock
+package-lock.json
+public
+.env
+.github
+README.md
