@@ -41,6 +41,12 @@ app.use(xss());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// routes import
+const appointmentRoutes = require('./routes/appointment');
+
+// base routes definition
+app.use('/appointments', appointmentRoutes);
+
 // import error handlers
 const errorHandlers = require('./handlers/errorHandlers');
 app.use(errorHandlers.mongoseErrors);

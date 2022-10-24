@@ -51,7 +51,7 @@ exports.getSingleAppointment = async (req, res, next) => {
     }
 };
 
-exports.updatePost = async (req, res, next) => {
+exports.updateAppointment = async (req, res, next) => {
     try {
         const data = req.body;
         const appointmentId = req.params.id;
