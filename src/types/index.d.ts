@@ -3,7 +3,7 @@ export interface ErrorMessage {
 }
 
 export interface StatisticsType {
-    missed: number;
+    pending: number;
     rescheduled: number;
     passed: number;
 }

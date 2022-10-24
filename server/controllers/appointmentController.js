@@ -23,10 +23,31 @@ exports.createAppointment = async (req, res, next) => {
     }
 };
 
+exports.getStats = async (req, res, next) => {
+    try {
+        const pending = await Appointment.find({ appointmentStatus: 'Pending' }).count();
+        const rescheduled = await Appointment.find({ appointmentStatus: 'Completed' }).count();
+        const passed = await Appointment.find({ appointmentStatus: 'Rescheduled' }).count();
+
+        const stats = {
+            pending,
+            rescheduled,
+            passed,
+        };
+
+        res.json({ stats }).status(STATUS_CODES.SUCCESS.SUCCESSFUL_REQUEST);
+    } catch (err) {
+        console.log(err?.message);
+        res.status(STATUS_CODES.ERROR.SERVER_ERROR).send({
+            error: err.message || 'A server error occured.',
+        });
+    }
+};
+
 exports.getAllAppointments = async (req, res, next) => {
     try {
-        const appointment = await Appointment.find({});
-        res.json({ appointment }).status(STATUS_CODES.SUCCESS.SUCCESSFUL_REQUEST);
+        const appointments = await Appointment.find({});
+        res.json({ appointments }).status(STATUS_CODES.SUCCESS.SUCCESSFUL_REQUEST);
     } catch (err) {
         console.log(err?.message);
         res.status(STATUS_CODES.ERROR.SERVER_ERROR).send({

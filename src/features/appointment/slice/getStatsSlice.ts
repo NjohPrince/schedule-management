@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllAppointmentsFunc } from '../thunk/appointmentThunkAPI';
 import { ErrorMessage, StatisticsType } from '../../../types';
 import { getStatsFunc } from '../thunk/getStatsThunkAPI';
 
@@ -41,9 +40,7 @@ const getStatsSlice = createSlice({
             .addCase(getStatsFunc.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
                 state.isSuccess = false;
-
-                console.log('REQUEST_DATA: ', payload);
-                // state.message = payload.message;
+                state.statistics = payload.stats;
             })
             .addCase(getStatsFunc.rejected, (state, action) => {
                 state.isLoading = false;
