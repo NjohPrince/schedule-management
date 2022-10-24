@@ -1,17 +1,22 @@
 .card {
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
-    padding: 1rem;
+    padding: 1rem 3rem;
     min-height: 100px;
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    justify-content: center;
 }
 
 .card h3 {
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 400;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .card h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 600;
 }
