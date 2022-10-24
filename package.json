@@ -1,27 +1,30 @@
 {
-    "name": "server",
-    "version": "1.0.0",
-    "description": "api for schedule management",
-    "main": "index.js",
-    "scripts": {
-        "start": " cd client && npm run build && cd .. && node index.js",
-        "devMode": "nodemon index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "theunicorndev237",
-    "license": "MIT",
-    "dependencies": {
-        "body-parser": "^1.20.1",
-        "cookie-parser": "^1.4.6",
-        "cors": "^2.8.5",
-        "dotenv": "^16.0.3",
-        "express": "^4.18.2",
-        "express-validator": "^6.14.2",
-        "helmet": "^6.0.0",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^6.6.7",
-        "morgan": "^1.10.0",
-        "nodemon": "^2.0.20",
-        "xss-clean": "^0.1.1"
-    }
+  "name": "server",
+  "version": "1.0.0",
+  "description": "api for schedule management",
+  "main": "index.js",
+  "scripts": {
+    "start": " cd client && npm run build && cd .. && node index.js",
+    "devMode": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "16.14.0"
+  },
+  "author": "theunicorndev237",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "helmet": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "xss-clean": "^0.1.1"
+  }
 }
