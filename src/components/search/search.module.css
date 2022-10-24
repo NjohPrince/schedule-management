@@ -33,6 +33,19 @@
     -o-transform: translateX(-50%);
 }
 
+.search .input {
+    position: relative;
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    justify-content: center;
+}
+
+.search .input .icon {
+    position: absolute;
+    right: 1rem;
+}
+
 .search input {
     display: flex;
     display: -ms-flexbox;
