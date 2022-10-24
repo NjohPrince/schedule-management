@@ -1,0 +1,10 @@
+.landing {
+    min-height: 100vh;
+    position: relative;
+}
+
+.add {
+    position: fixed;
+    bottom: 2rem;
+    right: 4vw;
+}
