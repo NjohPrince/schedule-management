@@ -41,8 +41,7 @@ const appointmentSlice = createSlice({
             .addCase(createAppointmentFunc.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
                 state.isSuccess = false;
-                console.log('SERVER_RESPONSE: ', payload);
-                // state.appointments = payload;
+                state.message = payload.message;
             })
             .addCase(createAppointmentFunc.rejected, (state, action) => {
                 state.isLoading = false;

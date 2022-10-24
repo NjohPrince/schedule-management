@@ -59,11 +59,9 @@ const AppointmentSchema = new Schema(
         },
         noteAfterAppointment: {
             type: String,
-            required: true,
         },
         noteBeforeAppointment: {
             type: String,
-            required: true,
         },
     },
     {

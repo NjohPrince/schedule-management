@@ -39,13 +39,13 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(xss());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes import
 const appointmentRoutes = require('./routes/appointment');
 
 // base routes definition
-app.use('api/v1/appointments', appointmentRoutes);
+app.use('/api/v1/appointments', appointmentRoutes);
 
 // import error handlers
 const errorHandlers = require('./handlers/errorHandlers');

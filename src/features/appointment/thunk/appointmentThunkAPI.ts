@@ -32,11 +32,18 @@ export const handleErrorMessages = (error: any) => {
     return message;
 };
 
+const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+    },
+};
+
 export const createAppointmentFunc = createAsyncThunk(
     '/create-appointment',
-    async (data: AppointmentEntityType, thunkAPI) => {
+    async (body: AppointmentEntityType, thunkAPI) => {
         try {
-            const response = await axios.post(`${CONSTANTS.ENV_VARIABLES.server_url}/appointments`, data);
+            const response = await axios.post(`${CONSTANTS.ENV_VARIABLES.server_url}/appointments`, body, config);
             return response?.data;
 
             // eslint-disable-next-line

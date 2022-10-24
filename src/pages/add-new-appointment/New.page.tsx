@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import moment, { Moment } from 'moment';
 import { Button, Input, Select, DatePicker, TimePicker } from 'antd';
-import { useDispatch } from '../../hooks';
+import { useDispatch, useSelector } from '../../hooks';
 import { createAppointmentFunc } from '../../features/appointment/thunk/appointmentThunkAPI';
+import { resetState } from '../../features/appointment/slice/appointmentSlice';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -16,6 +17,7 @@ import styles from './new.module.css';
 import NavbarComponent from '../../components/navbar/Navbar.component';
 import { CONSTANTS } from '../../constants/Constants';
 import { AppointmentEntityType } from '../../types/models';
+import { RootState } from '../../app/store';
 
 const NewAppointment: React.FC = () => {
     const [formData, setFormData] = useState<AppointmentEntityType>({
@@ -37,13 +39,32 @@ const NewAppointment: React.FC = () => {
 
     const { uniqueCode, clientName, phone, email, address1, city, noteBeforeAppointment, noteAfterAppointment } =
         formData;
+
+    // eslint-disable-next-line
+    const onChange = (e: any) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
     const dispatch = useDispatch();
+
+    const appointmentState = useSelector((state: RootState) => state.appointmentSlice);
+    const { isError, isLoading, isSuccess, message } = appointmentState;
 
     // eslint-disable-next-line
     const handleSubmit = (e: any) => {
         e.preventDefault();
+
+        console.log(formData);
+
         dispatch(createAppointmentFunc(formData));
     };
+
+    useEffect(() => {
+        if (isError) {
+            alert(message);
+        }
+        if (isSuccess) {
+            alert('Appointment successfully created!');
+        }
+    }, [isError, isLoading, isSuccess, message]);
 
     return (
         <div className={styles.add__new}>
@@ -66,11 +87,23 @@ const NewAppointment: React.FC = () => {
                 <div className={styles.getters}>
                     <div className={styles.form__control}>
                         <h3>Unique Code</h3>
-                        <Input name="uniqueCode" value={uniqueCode} size="large" placeholder="unique code" />
+                        <Input
+                            name="uniqueCode"
+                            onChange={onChange}
+                            value={uniqueCode}
+                            size="large"
+                            placeholder="unique code"
+                        />
                     </div>
                     <div className={styles.form__control}>
                         <h3>Name</h3>
-                        <Input name="clientName" value={clientName} size="large" placeholder="name" />
+                        <Input
+                            name="clientName"
+                            onChange={onChange}
+                            value={clientName}
+                            size="large"
+                            placeholder="name"
+                        />
                     </div>
                     <div className={styles.form__control}>
                         <h3>Sex</h3>
@@ -85,12 +118,12 @@ const NewAppointment: React.FC = () => {
                     </div>
                     <div className={styles.form__control}>
                         <h3>Phone</h3>
-                        <Input name="phone" value={phone} size="large" placeholder="phone" />
+                        <Input name="phone" onChange={onChange} value={phone} size="large" placeholder="phone" />
                     </div>
 
                     <div className={styles.form__control}>
                         <h3>Email</h3>
-                        <Input name="email" value={email} size="large" placeholder="email" />
+                        <Input name="email" onChange={onChange} value={email} size="large" placeholder="email" />
                     </div>
                 </div>
 
@@ -141,10 +174,11 @@ const NewAppointment: React.FC = () => {
                     <div className={styles.form__control}>
                         <h3>Appointment Time</h3>
                         <TimePicker
-                            onChange={(time: Moment | null, timeString: string) =>
-                                setFormData({ ...formData, appointmentTime: timeString })
-                            }
-                            defaultValue={moment('12:08', 'HH:mm')}
+                            onChange={(time: Moment | null, timeString: string) => {
+                                console.log(timeString);
+                                setFormData({ ...formData, appointmentTime: timeString });
+                            }}
+                            defaultValue={moment('12:08:00', 'HH:mm:ss')}
                             size="large"
                         />
                     </div>
@@ -157,11 +191,17 @@ const NewAppointment: React.FC = () => {
                 <div className={styles.getters}>
                     <div className={styles.form__control}>
                         <h3>Address 1</h3>
-                        <Input name="address1" value={address1} size="large" placeholder="address 1" />
+                        <Input
+                            name="address1"
+                            onChange={onChange}
+                            value={address1}
+                            size="large"
+                            placeholder="address 1"
+                        />
                     </div>
                     <div className={styles.form__control}>
                         <h3>City</h3>
-                        <Input name="city" value={city} size="large" placeholder="city" />
+                        <Input name="city" onChange={onChange} value={city} size="large" placeholder="city" />
                     </div>
                 </div>
 
@@ -175,6 +215,7 @@ const NewAppointment: React.FC = () => {
                         <TextArea
                             name="noteBeforeAppointment"
                             value={noteBeforeAppointment}
+                            onChange={onChange}
                             style={{ resize: 'none', width: '100%' }}
                             rows={4}
                             placeholder="Before Appointment"
@@ -185,6 +226,7 @@ const NewAppointment: React.FC = () => {
                         <TextArea
                             name="noteAfterAppointment"
                             value={noteAfterAppointment}
+                            onChange={onChange}
                             style={{ resize: 'none', width: '100%' }}
                             rows={4}
                             placeholder="After Appointment"

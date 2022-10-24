@@ -8,6 +8,8 @@ const { STATUS_CODES } = require('../constants/constants');
 
 exports.createAppointment = async (req, res, next) => {
     try {
+        console.log('REQUEST_DATA: ', req.body);
+
         const newAppointment = new Appointment(req.body);
 
         await newAppointment.save();
