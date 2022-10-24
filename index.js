@@ -81,7 +81,5 @@ app.get("*", function (req, res) {
   return res.sendFile(path.resolve(__dirname, "client/build/", "index.html"));
 });
 
-app.use(errorHandlers.notFound);
-
 // start the server
 startServer();
