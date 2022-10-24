@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import moment from 'moment';
-import { Button, Input, Select, DatePicker, DatePickerProps, TimePicker } from 'antd';
+import moment, { Moment } from 'moment';
+import { Button, Input, Select, DatePicker, TimePicker } from 'antd';
+import { useDispatch } from '../../hooks';
+import { createAppointmentFunc } from '../../features/appointment/thunk/appointmentThunkAPI';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -13,10 +15,34 @@ import styles from './new.module.css';
 // components
 import NavbarComponent from '../../components/navbar/Navbar.component';
 import { CONSTANTS } from '../../constants/Constants';
+import { AppointmentEntityType } from '../../types/models';
 
 const NewAppointment: React.FC = () => {
-    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-        console.log(date, dateString);
+    const [formData, setFormData] = useState<AppointmentEntityType>({
+        uniqueCode: '',
+        clientName: '',
+        phone: '',
+        email: '',
+        address1: '',
+        city: '',
+        firstTime: 'Yes',
+        appointmentDate: '',
+        requestDate: '',
+        appointmentStatus: 'Pending',
+        appointmentTime: '',
+        noteAfterAppointment: '',
+        noteBeforeAppointment: '',
+        sex: 'Male',
+    });
+
+    const { uniqueCode, clientName, phone, email, address1, city, noteBeforeAppointment, noteAfterAppointment } =
+        formData;
+    const dispatch = useDispatch();
+
+    // eslint-disable-next-line
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        dispatch(createAppointmentFunc(formData));
     };
 
     return (
@@ -40,27 +66,31 @@ const NewAppointment: React.FC = () => {
                 <div className={styles.getters}>
                     <div className={styles.form__control}>
                         <h3>Unique Code</h3>
-                        <Input size="large" placeholder="unique code" />
+                        <Input name="uniqueCode" value={uniqueCode} size="large" placeholder="unique code" />
                     </div>
                     <div className={styles.form__control}>
                         <h3>Name</h3>
-                        <Input size="large" placeholder="name" />
+                        <Input name="clientName" value={clientName} size="large" placeholder="name" />
                     </div>
                     <div className={styles.form__control}>
                         <h3>Sex</h3>
-                        <Select defaultValue="Male" size="large">
+                        <Select
+                            onChange={(value: string) => setFormData({ ...formData, sex: value })}
+                            defaultValue="Male"
+                            size="large"
+                        >
                             <Option value="Male">Male</Option>
                             <Option value="Female">Female</Option>
                         </Select>
                     </div>
                     <div className={styles.form__control}>
                         <h3>Phone</h3>
-                        <Input size="large" placeholder="phone" />
+                        <Input name="phone" value={phone} size="large" placeholder="phone" />
                     </div>
 
                     <div className={styles.form__control}>
                         <h3>Email</h3>
-                        <Input size="large" placeholder="email" />
+                        <Input name="email" value={email} size="large" placeholder="email" />
                     </div>
                 </div>
 
@@ -73,22 +103,36 @@ const NewAppointment: React.FC = () => {
                 <div className={styles.getters}>
                     <div className={styles.form__control}>
                         <h3>Appointment Date</h3>
-                        <DatePicker size="large" onChange={onChange} />
+                        <DatePicker
+                            size="large"
+                            onChange={(date, dateString) => setFormData({ ...formData, appointmentDate: dateString })}
+                        />
                     </div>
                     <div className={styles.form__control}>
                         <h3>First Time</h3>
-                        <Select defaultValue="Yes" size="large">
+                        <Select
+                            defaultValue="Yes"
+                            size="large"
+                            onChange={(value: string) => setFormData({ ...formData, firstTime: value })}
+                        >
                             <Option value="Yes">Yes</Option>
                             <Option value="No">No</Option>
                         </Select>
                     </div>
                     <div className={styles.form__control}>
                         <h3>Request Date</h3>
-                        <DatePicker size="large" onChange={onChange} />
+                        <DatePicker
+                            size="large"
+                            onChange={(date, dateString) => setFormData({ ...formData, requestDate: dateString })}
+                        />
                     </div>
                     <div className={styles.form__control}>
                         <h3>Appointment Status</h3>
-                        <Select defaultValue="Pending" size="large">
+                        <Select
+                            onChange={(value: string) => setFormData({ ...formData, appointmentStatus: value })}
+                            defaultValue="Pending"
+                            size="large"
+                        >
                             <Option value="Pending">Pending</Option>
                             <Option value="Completed">Completed</Option>
                             <Option value="Rescheduled">Rescheduled</Option>
@@ -96,7 +140,13 @@ const NewAppointment: React.FC = () => {
                     </div>
                     <div className={styles.form__control}>
                         <h3>Appointment Time</h3>
-                        <TimePicker defaultValue={moment('12:08:23', 'HH:mm:ss')} size="large" />
+                        <TimePicker
+                            onChange={(time: Moment | null, timeString: string) =>
+                                setFormData({ ...formData, appointmentTime: timeString })
+                            }
+                            defaultValue={moment('12:08', 'HH:mm')}
+                            size="large"
+                        />
                     </div>
                 </div>
 
@@ -107,11 +157,11 @@ const NewAppointment: React.FC = () => {
                 <div className={styles.getters}>
                     <div className={styles.form__control}>
                         <h3>Address 1</h3>
-                        <Input size="large" placeholder="address 1" />
+                        <Input name="address1" value={address1} size="large" placeholder="address 1" />
                     </div>
                     <div className={styles.form__control}>
                         <h3>City</h3>
-                        <Input size="large" placeholder="city" />
+                        <Input name="city" value={city} size="large" placeholder="city" />
                     </div>
                 </div>
 
@@ -122,11 +172,23 @@ const NewAppointment: React.FC = () => {
                 <div className={`${styles.getters} ${styles.controllable}`}>
                     <div style={{ flex: 1 }} className={styles.form__control}>
                         <h3>Before Appointment</h3>
-                        <TextArea style={{ resize: 'none', width: '100%' }} rows={4} placeholder="Before Appointment" />
+                        <TextArea
+                            name="noteBeforeAppointment"
+                            value={noteBeforeAppointment}
+                            style={{ resize: 'none', width: '100%' }}
+                            rows={4}
+                            placeholder="Before Appointment"
+                        />
                     </div>
                     <div style={{ flex: 1 }} className={styles.form__control}>
                         <h3>After Appointment</h3>
-                        <TextArea style={{ resize: 'none', width: '100%' }} rows={4} placeholder="After Appointment" />
+                        <TextArea
+                            name="noteAfterAppointment"
+                            value={noteAfterAppointment}
+                            style={{ resize: 'none', width: '100%' }}
+                            rows={4}
+                            placeholder="After Appointment"
+                        />
                     </div>
                 </div>
             </form>
@@ -134,6 +196,7 @@ const NewAppointment: React.FC = () => {
             <div className={styles.add}>
                 <Link to={CONSTANTS.PATHS.add_new_appointment}>
                     <Button
+                        onClick={handleSubmit}
                         title="New Appointment"
                         style={{
                             padding: '2rem',

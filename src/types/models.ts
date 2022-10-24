@@ -6,10 +6,10 @@ export interface BaseUserEntityType {
     // MM ~ 01-12 - Month of the appointment
     // YY ~  - Year of the appointment
 
+    sex: string;
     clientName: string;
     phone: string;
     email: string;
-    contact: string;
     address1: string;
     city: string;
     firstTime: string;
