@@ -26,8 +26,8 @@ exports.createAppointment = async (req, res, next) => {
 exports.getStats = async (req, res, next) => {
     try {
         const pending = await Appointment.find({ appointmentStatus: 'Pending' }).count();
-        const rescheduled = await Appointment.find({ appointmentStatus: 'Completed' }).count();
-        const passed = await Appointment.find({ appointmentStatus: 'Rescheduled' }).count();
+        const rescheduled = await Appointment.find({ appointmentStatus: 'Rescheduled' }).count();
+        const passed = await Appointment.find({ appointmentStatus: 'Completed' }).count();
 
         const stats = {
             pending,

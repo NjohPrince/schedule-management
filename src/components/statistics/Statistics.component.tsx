@@ -36,7 +36,10 @@ const StatisticsComponent = () => {
                     statHeadline="Rescheduled"
                     statValue={`${isLoading ? '...' : statistics.rescheduled}`}
                 />
-                <StatisticCardComponent statHeadline="Passed" statValue={`${isLoading ? '...' : statistics.passed}`} />
+                <StatisticCardComponent
+                    statHeadline="Completed"
+                    statValue={`${isLoading ? '...' : statistics.passed}`}
+                />
             </Grid>
         </div>
     );
