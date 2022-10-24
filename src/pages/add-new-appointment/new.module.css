@@ -1,4 +1,56 @@
 .add__new {
     min-height: 100vh;
+    padding-bottom: 6rem;
     position: relative;
+}
+
+.section,
+.form {
+    padding: 2rem 4vw;
+}
+
+.head {
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    gap: 2rem;
+}
+
+.head h2 {
+    text-transform: uppercase;
+    color: var(--gray-color);
+}
+
+.headline h2 {
+    margin: 2rem 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--gray-color);
+}
+
+.rule {
+    height: 1px;
+    width: 100%;
+    margin: 3rem 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.getters {
+    display: flex;
+    display: -ms-flexbox;
+    gap: 2rem;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+}
+
+.getters .form__control h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.add {
+    position: fixed;
+    bottom: 2rem;
+    right: 4vw;
 }
