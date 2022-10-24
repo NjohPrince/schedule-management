@@ -19,6 +19,7 @@ import { CONSTANTS } from '../../constants/Constants';
 import { AppointmentEntityType } from '../../types/models';
 import { RootState } from '../../app/store';
 import LoadingOverlayComponent from '../../components/loading-overlay/LoadingOverlay.component';
+import { resetState } from '../../features/appointment/slice/appointmentSlice';
 
 const NewAppointment: React.FC = () => {
     const [formData, setFormData] = useState<AppointmentEntityType>({
